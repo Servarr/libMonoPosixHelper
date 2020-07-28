@@ -1,0 +1,18 @@
+--- fstab.c.bak	2020-07-23 17:29:08.350617483 +0100
++++ fstab.c	2020-07-23 17:33:50.530053833 +0100
+@@ -334,6 +334,15 @@
+ 
+ #endif /* def HAVE_FSTAB_H || def HAVE_CHECKPOINT_H || def HAVE_SYS_VFSTAB_H */
+ 
++#if !defined(HAVE_FSTAB_H) && !defined(HAVE_SYS_VFSTAB_H)
++gint32
++Mono_Posix_Syscall_getfsfile (const char *mount_point,
++                struct Mono_Posix_Syscall__Fstab *fsbuf)
++{
++         return 1;
++}
++#endif
++
+ G_END_DECLS
+ 
+ /*

@@ -1,0 +1,11 @@
+jobs:
+- job: Alpine
+  pool:
+    vmImage: 'ubuntu-18.04'
+  container: servarr/testimages:alpine
+  steps:
+  - bash: ./build_libmonohelper.sh
+    displayName: Build
+  - publish: libMonoPosixHelper.so
+    artifact: libMonoPosixHelper
+    displayName: Publish
